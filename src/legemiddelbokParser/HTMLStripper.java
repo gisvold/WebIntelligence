@@ -16,7 +16,6 @@ import java.util.StringTokenizer;
 
 public class HTMLStripper {
 	
-	public class HtmlStripper {
 
 		private File[] files;
 		private String URL;
@@ -26,34 +25,9 @@ public class HTMLStripper {
 		private XMLParser xmlP;
 
 		
-		public HtmlStripper(String URL, String sBoundary, String pBoundary,
-				String allsmall, XMLParser xmlP) {
-
-			this.URL = URL;
-			this.pBoundary = pBoundary;
-			this.sBoundary = sBoundary;
-			this.xmlP = xmlP;
-
-			try {
-
-				orginalFile = findSource(URL);
-
-			} catch (MalformedURLException e) {
-
-				e.printStackTrace();
-
-			} catch (IOException e) {
-
-				e.printStackTrace();
-
-			}
-
-			parseFile(orginalFile);
-
-		}
 
 
-		public HtmlStripper(String filename, XMLParser XMLP, String sBoundary,
+		public HTMLStripper(String filename, XMLParser XMLP, String sBoundary,
 				String pBoundary) {
 
 			File file = new File(filename);
@@ -74,7 +48,7 @@ public class HTMLStripper {
 
 				for (int i = 0; i < files.length; i++) {
 
-					new HtmlStripper(files[i].getAbsolutePath(), XMLP, sBoundary,
+					new HTMLStripper(files[i].getAbsolutePath(), XMLP, sBoundary,
 							pBoundary);
 
 				}
@@ -99,7 +73,7 @@ public class HTMLStripper {
 
 			}
 		}
-	}
+	
 	
 	
 	public ArrayList getMeta(String file){
@@ -134,8 +108,8 @@ public class HTMLStripper {
 		String finishedFile = file.toLowerCase();
 		String title = searchTitle(finishedFile);
 		String strippedFrame;
-		originalFile = finishedFile;
-		tagsRemoved = strip(originalFile);
+		orginalFile = finishedFile;
+		tagsRemoved = strip(orginalFile);
 		
 		//##########################
 		// Removing stop words
@@ -151,7 +125,7 @@ public class HTMLStripper {
 		}
 		
 		try {
-			 XMLP.makeXMLTokenizer(title, URL, tagsRemoved);
+			 xmlP.makeXMLTokenizer(title, URL, tagsRemoved);
 			 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -299,7 +273,7 @@ public class HTMLStripper {
 
 		file = file.replaceAll("(<script.+?</script>)+", "");
 
-		file = file.replaceAll("<p>", parBoundary);
+		file = file.replaceAll("<p>", pBoundary);
 
 		file = file.replaceAll("<[^>]*>", " ");
 
@@ -319,7 +293,7 @@ public class HTMLStripper {
 		
 		for (int i = 0; i < chars.length; i++){
 			
-			file = file.replaceAll((String.valueOf(chars[i])), senBoundary);
+			file = file.replaceAll((String.valueOf(chars[i])), sBoundary);
 		}
 		
 		file = file.replaceAll("\"", " ");

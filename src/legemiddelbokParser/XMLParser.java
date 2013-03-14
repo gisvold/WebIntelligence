@@ -103,13 +103,14 @@ public class XMLParser {
 			ArrayList URIList = parseURI(URLs);
 			
 			for(int i = 0; i < URIList.size(); i++){
-				stripper = new HTLMStripper((String)URIList.get(i), senBoundary, penBoundary, allSmall, this);
+				stripper = new HTMLStripper((String)URIList.get(i), this, senBoundary, penBoundary);
 			}
 			
 		} else {
 			stripper = new HTMLStripper(directoryText, this, senBoundary, penBoundary); //Used when reading from file
 		}
 	}
+	
 	
 	
 	/**
