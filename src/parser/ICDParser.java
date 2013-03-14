@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.apache.commons.digester3.Digester;
 import org.xml.sax.SAXException;
 
+import dataClasses.Constants;
 import dataClasses.ICD10;
 
 public class ICDParser {
@@ -49,7 +50,7 @@ public class ICDParser {
 	}
 	
 	public static void main(String[] args) throws IOException, SAXException {
-		ICDParser icd = new ICDParser(Constants.ICDPath);
+		ICDParser icd = new ICDParser(Constants.ICDPATH);
 	}
 
 }

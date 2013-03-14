@@ -35,7 +35,7 @@ public class CaseReader {
 	private void addCases(){
 		
 		for(int i = 1; i < 9; i++){
-			File input = new File(Constants.STEMMEDPATIENTCASES+"/case"+i+"stemmed"+".txt");
+			File input = new File(Constants.STEMMEDPATIENTCASES +"/case"+i+"stemmed"+".txt");
 			
 			try{
 				readFile(input);
@@ -57,7 +57,7 @@ public class CaseReader {
 			BufferedReader stopWords = new BufferedReader(new InputStreamReader(in));
 			
 			String stopWordString;
-			while ((stopWordString = stopWordString.readLine()) != null){
+			while ((stopWordString = stopWords.readLine()) != null){
 				file = file.replaceAll(" " + stopWordString + " ", " ");
 			}
 			
