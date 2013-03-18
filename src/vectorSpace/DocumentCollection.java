@@ -31,7 +31,7 @@ public class DocumentCollection {
 	public DocumentVector getById(String id){
 		for(int i = 0; i < docs.size(); i++){
 			if(docs.get(i).getID().equals(id)){
-				return docs.get(i)
+				return docs.get(i);
 			}
 		}
 		return null;
