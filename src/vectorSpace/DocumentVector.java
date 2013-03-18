@@ -29,13 +29,31 @@ public class DocumentVector {
 	
 	
 	public void generateVector(HashMap<String, Integer> terms, HashMap<String, Double> idf){
+		this.setVector(new double[terms.size()]);
+		for(int i = 0; i < getVector().length; i++){
+			vector[i] = 0;
+		}
 		
+		for(int i = 0; i < words.length; i++){
+			if(terms.containsKey(words[i])){
+				vector[terms.get(words[i])]++;
+			}
+		}
+		for(String key : terms.keySet()){
+			vector[terms.get(key)] = (vector[terms.get(key)]/words.length)*Math.log(idf.get(key));
+		}
 		
 	}
 	
 	
 	public void setQuerySim(double querySim){
-		
+		this.querySim = querySim;
+		try{
+			this.docListener.addRating(this.ID, querySim);
+			
+		} catch (Exception e) {
+			System.out.println("No document listener available");
+		}
 	}
 	
 	

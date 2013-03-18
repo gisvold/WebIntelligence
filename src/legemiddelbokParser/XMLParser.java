@@ -19,7 +19,6 @@ import org.jdom2.input.SAXBuilder;
  * @author Aleks Gisvold
  *
  */
-
 public class XMLParser {
 	
 	

@@ -28,7 +28,7 @@ public class TestApp {
 			return;
 		}
 
-		Class stemClass = Class.forName("org.tartarus.snowball.ext.norwegianStemmer");
+		Class stemClass = Class.forName("ext.norwegianStemmer");
 		SnowballStemmer stemmer = (SnowballStemmer) stemClass.newInstance();
 
 		Reader reader;
