@@ -1,0 +1,50 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{ucs}
+\usepackage{float}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{ifpdf}
+\usepackage{url}
+\usepackage{xtab}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage[english]{babel} 
+\usepackage[parfill]{parskip}
+\newcommand{\comment}[1]{} \comment{This is a block comment wrapped in curly
+  brackets}
+%\renewcommand{\thefootnote}{\roman{footnote}}
+\title{Group Report | TDT4240}
+\author{Aleksander Gisvold, Tri M. Nguyen, Jørgen Ekeland}
+\date{\today}
+\begin{document}
+\pagenumbering{gobble}
+\input{section/front-page}
+\newpage
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+% Insert path to main sections here, using syntax \input{folder/filename}
+\input{section/Introduction}
+\input{section/architecture}
+\input{section/method}
+\input{section/result}
+\input{section/discussion}
+\input{section/conclusion}
+\input{section/appendix}
+% \newpage
+% \addcontentsline{toc}{section}{Appendices}
+% \appendix
+% \input{section/Appendix/BingoRules.tex}
+% \newpage
+% \listoftables
+% \listoffigures
+\bibliographystyle{plain}
+% \bibliography{bibl}
+\end{document}
+
