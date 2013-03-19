@@ -9,3 +9,4 @@
 *.swp
 
 docs/project_report/*.pdf
+*.aux
