@@ -6,6 +6,7 @@
 *.ear
 .DS_Store
 .classpath
+.metadata
 *.swp
 
 docs/project_report/*.pdf
