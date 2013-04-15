@@ -5,7 +5,7 @@
 *.war
 *.ear
 .DS_Store
-
+.classpath
 *.swp
 
 docs/project_report/*.pdf
