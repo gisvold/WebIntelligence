@@ -1,15 +1,16 @@
-package parser;
+package src.parser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
 import org.apache.commons.digester3.Digester;
 import org.xml.sax.SAXException;
 
-import dataClasses.Constants;
-import dataClasses.ICD10;
+import src.dataClasses.Constants;
+import src.dataClasses.ICD10;
 
 public class ICDParser {
 	

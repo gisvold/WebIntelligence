@@ -1,4 +1,4 @@
-package parser;
+package src.parser;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import dataClasses.ATC;
+import src.dataClasses.ATC;
 
 
 public class ATCParser {

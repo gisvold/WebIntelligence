@@ -1,4 +1,4 @@
-package parser;
+package src.parser;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,21 +11,21 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
-import dataClasses.TherapyChapter;
+import src.dataClasses.TherapyChapter;
 
 public class TherapyReader {
 	
 	private String body;
 	
-	private ArrayList<TherapyChapter> chapters;
+	private ArrayList<src.dataClasses.TherapyChapter> chapters;
 	
-	public ArrayList<TherapyChapter> getChapters(){
+	public ArrayList<src.dataClasses.TherapyChapter> getChapters(){
 		return chapters;
 	}
 	
 	
 	public TherapyReader(){
-		chapters = new ArrayList<TherapyChapter>();
+		chapters = new ArrayList<src.dataClasses.TherapyChapter>();
 		addChapters();
 	}
 	
@@ -37,7 +37,7 @@ public class TherapyReader {
 		
 		for(int i = 0; i < files.length; i++){
 			readXML(files[i]);
-			TherapyChapter tc = new TherapyChapter(files[i].getName(), getResult());
+			src.dataClasses.TherapyChapter tc = new src.dataClasses.TherapyChapter(files[i].getName(), getResult());
 			chapters.add(tc);
 		}
 		

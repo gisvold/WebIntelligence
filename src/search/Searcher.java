@@ -1,4 +1,4 @@
-package search;
+package src.search;
 
 import java.io.IOException;
 
@@ -13,9 +13,9 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopScoreDocCollector;
 import org.apache.lucene.util.Version;
 
-import parser.CaseReader;
+import src.parser.CaseReader;
 
-import dataClasses.PatientCase;
+import src.dataClasses.PatientCase;
 
 public class Searcher {
 	

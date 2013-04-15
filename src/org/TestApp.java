@@ -1,4 +1,4 @@
-package org;
+package src.org;
 
 import java.lang.reflect.Method;
 import java.io.File;

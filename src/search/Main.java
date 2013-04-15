@@ -1,4 +1,4 @@
-package search;
+package src.search;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,12 +7,12 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 
 import org.xml.sax.SAXException;
 
-import parser.TherapyReader;
+import src.parser.TherapyReader;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 public class Main {
 	

@@ -1,4 +1,4 @@
-package search;
+package src.search;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,9 +16,9 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
-import dataClasses.ATC;
-import dataClasses.Constants;
-import dataClasses.ICD10;
+import src.dataClasses.ATC;
+import src.dataClasses.Constants;
+import src.dataClasses.ICD10;
 
 public class Indexer {
 

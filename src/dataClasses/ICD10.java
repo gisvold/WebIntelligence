@@ -1,4 +1,4 @@
-package dataClasses;
+package src.dataClasses;
 
 import java.util.ArrayList;
 

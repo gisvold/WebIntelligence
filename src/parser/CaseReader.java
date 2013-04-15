@@ -1,4 +1,4 @@
-package parser;
+package src.parser;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -12,8 +12,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import dataClasses.Constants;
-import dataClasses.PatientCase;
+import src.dataClasses.Constants;
+import src.dataClasses.PatientCase;
 
 public class CaseReader {
 	

@@ -1,4 +1,4 @@
-package dataClasses;
+package src.dataClasses;
 
 public class ATC {
 	

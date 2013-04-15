@@ -1,4 +1,4 @@
-package vectorSpace;
+package src.vectorSpace;
 
 import java.util.HashMap;
 

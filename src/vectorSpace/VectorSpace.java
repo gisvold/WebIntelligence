@@ -1,4 +1,4 @@
-package vectorSpace;
+package src.vectorSpace;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;

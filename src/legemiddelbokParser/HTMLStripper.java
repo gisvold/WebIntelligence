@@ -1,4 +1,4 @@
-package legemiddelbokParser;
+package src.legemiddelbokParser;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
