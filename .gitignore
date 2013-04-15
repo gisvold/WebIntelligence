@@ -1,12 +1,21 @@
 *.class
 
 # Package Files #
-*.jar
+# *.jar
 *.war
 *.ear
 .DS_Store
+.classpath
 .metadata
 *.swp
 
 docs/project_report/*.pdf
 *.aux
+
+
+
+*.fls
+*.log
+*.synctex.gz
+*.toc
+*.fdb_latexmk

@@ -54,18 +54,17 @@ public class TherapyReader {
 		Document myDoc = null;
 		try {
 			myDoc = myBuilder.build(file);
-			
 		} catch (JDOMException jde) {
 			jde.printStackTrace();
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		Element root = myDoc.getRootElement();
 		
-		Element tokenized = root.getChild("tokenized");
-		Element doc = tokenized.getChild("doc");
+		// Element tokenized = root.getChild("tokenized");
+		
+		Element doc = root.getChild("doc");
 		Element body = doc.getChild("body");
 		
 		this.body = body.getText();

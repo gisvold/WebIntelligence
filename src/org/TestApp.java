@@ -18,7 +18,7 @@ public class TestApp {
 		System.err.println("Usage: TestApp <algorithm> <input file> [-o <output file>]");
 	}
 
-	public static void main(String [] args) throws Throwable {
+	public static void main(String[] args) throws Throwable {
 		
 		File[] files;
 		File file = new File(args[1]);
