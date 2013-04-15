@@ -15,7 +15,7 @@ import dataClasses.TherapyChapter;
 
 public class TherapyReader {
 	
-	private static String body;
+	private String body;
 	
 	private ArrayList<TherapyChapter> chapters;
 	
