@@ -11,3 +11,11 @@
 
 docs/project_report/*.pdf
 *.aux
+
+
+
+*.fls
+*.log
+*.synctex.gz
+*.toc
+*.fdb_latexmk
