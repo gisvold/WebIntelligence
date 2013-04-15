@@ -1,2 +1,35 @@
 \section{Architecture}
 \label{sec:architecture}
+
+We found it most useful to build this with a pipe and filter architecture. Since the patient cases and the NLH (Norsk Legemiddelhåndbok) were only to be parsed once, while doing search was needed every time we do a search, it was most efficient to do it in this manner.
+
+%TODO: Bilde av arkitekturen
+
+In order to make an index, we parsed the ATC- and ICD-Codes and saved the results. By preprocessing NLH and the patient cases, the search engine was able to build a search query to be used searching the ATC/ICD indexes. By using methods provided by Apache Lucene, we implemented a method for ranking results based on the matching codes. 
+
+
+\begin{description}
+\item{\textbf{ATC/ATCParser:}}\\
+The ATC was given by the course staff. The ATC is used to read a prolog file, in order to store the contents as a ATC-Objects with the help of an ATCParser we wrote.
+\item{\textbf{ICD/ICDParser:}}\\
+The NLH was given as HTML files. With the help of the NLHParser we wrote, we were able to strip each chapter of HTML tags creating noise in. After stripping the documents of HTML tags, we created XML files of each chapter. After making the XML files, we stripped the files of stop words and stemmed the files using an open source stemming program (Snowball %TODO: Add reference)
+\item{\textbf{Patient case:}}\\
+The patient case was in as a docx-file. We extracted each case into separate text documents. With the help of the CaseReader we implemented, we were able to strip the case of stop words. Afterwards we stemmed the contents with the help of the Snowball stemmer.
+\item{\texfbf{Indexing:}}\\
+The indexer using Apache Lucene %TODO: Add reference 
+takes the ATC codes and index the label and code. The indexer for ICD index the label, code and synonyms. These were stored in a separate folder (resources/index/..) in the project, so it may be accessed by the searcher. 
+\item{\textbf{Search:}}\\
+With the patient cases and NLH reworked to follow a common standard, it was much easier to do the search. The search takes each sentence from each patient case and handbook chapter and searches through the ATC in the ICD codes for relevant hits. This was implemented using Apache Lucene, to make sure we could read the stored index for ATC and ICD. This was done in order to receive ranked hits.
+\item{\textbf{vectorSpace package:}}\\
+In order to implement the vector space model to our project, we wrote the code in the vector space/Document Collection classes. 
+\begin{description}
+\item{textit{DocumentVector: }} \\
+The DocumentVector class is used to make vectors out of the indexed documents. The class also implements a DocumentCollection listener, to avoid occurence of duplicates.
+\item{textit{DocumentCollection: }}\\
+This class creates a document collection(vectors), which is built as a HashMap. This class is updated every time a new document is added to the collection (a new vector is added).
+\item{textit{VectorSpace: }}\\
+This class does the calculation of the cosine similarity. It calculated the cosine value between two vectors(documents).
+\item{textit{VectorMain: }}\\
+This class consists of a comprehensive main method, which is the very finalization of the algorithm, since it does the ranking of the relevant documents. It uses all of the above mentioned classes.
+\end{description}
+\end{description}
