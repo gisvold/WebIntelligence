@@ -1,2 +1,21 @@
 \section{Discussion}
 \label{sec:discussion}
+
+The staff course provided a 'Gold Standard' %TODO: Reference
+which was used to evaluate the performance of the search engine we built. An important aspect of information retrieval is recall vs. precision, so each case was evaluated against these standards.
+
+Precision is the percentage of the retrieved documents that are relevant to our case. I.eg. if the retrieves 2 documents, and only 1 is useful to us, the precision is 50\%.
+
+Recall is the amount of the relevant documents in the collection that are collected. I.eg. if there are 10 relevant documents in our collection, and 5 of them are retrieved, the recall is 50\%.
+
+Further, if the search only retrieves these 5 documents, the precision will be 100\%. 
+
+\paragraph
+To ensure a better picture of the situation, we also calculated the interpolated precision of four recall levels: 25\%, 50\%, 75\% and 100\%.
+
+%TODO: Add nice tables
+
+
+Since the NLH is quite a huge document, parted into a lot of chapters and sub-chapters, we decided only to consider subchapters that were given their own HTML-file in the original document, as separate entities. This decision effected our search engine, since the sub chapters would not be retrieved as separate hits. This created some noise in our results. 
+
+%TODO: Finish this section
