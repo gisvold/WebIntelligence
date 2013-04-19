@@ -1,0 +1,33 @@
+\chapter{Teorier}
+\section{Teorier}
+En av de sentrale teoriene innen informasjonsgjenfinning er 'Vector Space Model'. Dette er en algebraisk modell, som representerer dokumenter som vektorer av sine indekserte termer. Prosedyren som denne modellen tar i bruk, er delt i tre deler:
+\begin{enumerate}
+\item{Dokumentindeksering er å trekke ut termer basert på innholdet.}
+\item{Vekting av de indekserte termene, ved hjelp av forekomstfrekvens for termene}
+\item{Rangering av dokumentene med hensyn til spørringen, vektet av en likhetsmåling}
+\end{enumerate}
+I denne modellen representeres både dokumenter og spørringer ved en vektor, på formen: \[d_j = (w_{1,j}, w_{2,j}, ..., w_{n,j})
+\]
+\[ 
+q = (w_{1,q}, w_{2,q}, ..., w_{t,q})
+\]
+hvor hver enkelt dimensjon representerer en separat term. Begrepet 'term' kan variere noe. En term kan representere en setning, et ord eller en del av en setning. I vår oppgave har vi valgt å håndtere dem som ord, for å gjøre det enklere for oss å indeksere. Ved indeksering velger man alltid å representere kun de termene som er representert i dokumentene. Disse termene har derfor en verdi over null. Verdien er som regel vektet ved hjelp av en funksjon som kalkulerer verdien basert på frekvensen av termen. Den mest brukte funksjonen er tf*idf, 'term-frequency* inverse- document- frequency'. Denne måten å vekte termer på forteller oss hvor viktig et ord er i forhold til dokumentet det er en del av, og i forhold til mengden av dokumenter i samlingen det søkes i. Tf*idf-verdien vil øke proporsjonalt med antallet ganger ordet forekommer i dokumentet, men justeres ved hjelp av antallet forekomster i resten av dokumentene. Dette blir gjort for å ta hensyn til ofte brukte ord, som kan forekomme ofte i alle dokumentene kontra ord som forekommer kun i et spesifikt dokument. 
+
+\paragraph{}
+Når dokumentene indekseres, forsøker vi å fjerne ordene som ikke beskriver innholdet. Eksempler er: dette, er, en, et, og, o.l. Disse ordene kalles "stoppord". 
+
+\paragraph{}
+Etter å ha vektet dokumentene, vil metoden rangere resultatene ved hjelp av å regne ut "cosinus-likheten" mellom dokumentene og spørringen. Ved å beregne "cosinus-likheten" menes å sammenligne vektoren for spørringen med de ulike vektorene for dokumentene. Dette gjøres ved å kalkulere vinkelen mellom vektorene. Formelen for dette er gitt ved:
+\[
+\cos(\theta) = \frac{d_2 \times q}{\parallel d_2 \parallel \times \parallel q \parallel}
+\]
+hvor telleren betegner vektorproduktet og nevneren betegner normaliseringen. Fordi alle vektorverdiene er positive og aldri 0, vil et resultat på 0 bety ortogonalitet mellom vektorene og det er intet samsvar mellom dem.
+
+Denne modellen har imidlertid enkelte begrensninger:
+\begin{itemize}
+\item{}
+\item{}
+\item{}
+\item{}
+\item{}
+\end{itemize}
