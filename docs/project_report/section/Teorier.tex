@@ -25,9 +25,29 @@ hvor telleren betegner vektorproduktet og nevneren betegner normaliseringen. For
 
 Denne modellen har imidlertid enkelte begrensninger:
 \begin{itemize}
-\item{}
-\item{}
-\item{}
-\item{}
-\item{}
+\item{Store dokumenter representeres på en ubalansert måte, med et lite skalarprodukt og høy dimensjon}
+\item{Ikke alle relevant ord vil bli matchet. Substringer kan gi 'falske positiver'}
+\item{Synonymer kan forstyrre den semantiske tolkningen av dokumentet}
+\item{Når dokumenter indekseres blir rekkefølgen av termer tapt.}
+\item{Det antas at det er en statistisk uavhengighet mellom ord}
 \end{itemize}
+
+
+\section{Teoriene i praksis}
+For å benytte oss av 'VSM' var vi nødt til å gjøre en del forberedende arbeid på dokumentene våre. Pasientjournalene ble gitt som en tekstfil. Det første som måtte gjøres var å fjerne stoppord, for å forbedre indekseringen. Etter fjerningen av stoppord benyttet vi oss av en 'Stemmer' for å stemme alle ordene til sin grunnform. For å utføre stemmingen benyttet vi 'Snowball Stemmer', et program gjort tilgjengelig publisering av kildekoden på nett. 
+Etter å ha blitt stemt var dokumentene klare for å bli søkt i.
+Teorikapitlene i NLH trengte også preprosessering før det var klart til bruk. Først måtte vi fjerne HTML-merker, for å lettere søke i teksten, for så å gjøre kapitlene om til XML-filer. Teorikapitlene ble også stemt.
+ICD10-kodene ble publisert som en .owl-fil. For å lettere filtrere, lagde vi klasser for hver enkelt etikett i ICD10 og ATC.
+Etter å ha laget klasser, benyttet vi oss av Apache sitt 'Digester'-bibliotek for hver enkelt etikett. 
+Til slutt benyttet vi Apache sitt 'Lucene'-bibliotek for å indeksere alle klassene. De indekserte filene ble lagret på disk, for å slippe å gjøre arbeid om igjen. På denne måten var det mulig for oss å benytte teorikapitlene som søkeparametere når vi søkte gjennom de indekserte filene. 
+Som kjent, var målet å finne den beste matchen mellom de pasientjournalene og terapikapitlene i NLH. 
+Som tidligere nevnt, benyttet vi VSM-modellen for å utføre søket og rangeringen av dokumentene. Vi fulgte stegene presentert i den teoretiske beskrivelsen til punkt og prikke. Måten vi gjorde det på var som følger:
+\begin{itemize}
+\item{Bygget et array av preprossesserte teorikapitler}
+\item{Vektet ordene i dokumentet, ved hjelp av tf*idf-formelen}
+\item{Kalkulerte cosinus-likheten, ved hjelp av ovennevnte formel}
+\item{Rangerte dokumentene}
+\end{itemize}
+
+\subsection{Kommentarer til løsningen}
+Vi valgte å dele NLH i kapitler og subkapitler, da dette var måten HTML-filene var delt inn på. Det eksisterer subsubkapitler innenfor subkapitlene, men subsubkapitlene er ikke separate filer. Vi fant ingen god måte å løse dette problemet på. 
