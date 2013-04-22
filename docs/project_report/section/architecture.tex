@@ -1,35 +1,37 @@
 \section{Architecture}
 \label{sec:architecture}
 
-We found it most useful to build this with a pipe and filter architecture. Since the patient cases and the NLH (Norsk Legemiddelhåndbok) were only to be parsed once, while doing search was needed every time we do a search, it was most efficient to do it in this manner.
+Etter undersøkelse bestemte vi oss for å bygge systemet vårt ved hjelp av en 'rør og filter'-arkitektur (pipe and filter). Det gjorde det lettere for oss å kunne jobbe på filer individuelt og unngå dobbeltarbeid, da vi kunne lagre resultatene fra en operasjon før vi utførte neste operasjon. Siden pasientjournalene og den norske legemiddelhåndboken kun skulle tolkes en gang, mens søkene skulle utføres gjentatte ganger, med ulike søkeparametere, var dette den mest hensiktsmessige løsningen.
 
 %TODO: Bilde av arkitekturen
 
-In order to make an index, we parsed the ATC- and ICD-Codes and saved the results. By preprocessing NLH and the patient cases, the search engine was able to build a search query to be used searching the ATC/ICD indexes. By using methods provided by Apache Lucene, we implemented a method for ranking results based on the matching codes. 
+En viktig bit av søk i dokumentsamlinger er å kunne indeksere termer i samlingen av dokumenter. For å gjøre dette, tolket vi ATC- og ICD10-kodene og lagret resultatene. Ved å preprosessere NLH og pasientjournalene, var det mulig for søkemotoren å bygge en spørring basert på termer i pasientjournalen. Denne spørringen ble dermed brukt for å søke i ATC- og ICD10-indeksene. Ved å bruke java-biblioteket Apache Lucene, implementerte vi en metode for å rangere resultatene basert på sammenhengen mot ATC-/ICD10-kodene.
 
+Merk at javakoden er skrevet på engelsk. Vi valgte engelsk fordi det er en uskrevet standard at man programmerer på engelsk. Det gjorde det også vesentlig enklere å kunne spørre om hjelp via nett.
 
 \begin{description}
 \item{\textbf{ATC/ATCParser:}}\\
-The ATC was given by the course staff. The ATC is used to read a prolog file, in order to store the contents as a ATC-Objects with the help of an ATCParser we wrote.
+ATC-kodene ble gitt av fagstaben som en .owl-fil. ATC benyttes for å lese en prologfil. Ved å lese filen, kunne 'ATCParseren' separere innholdet og lagre det som separate ATC-objektene for enklere søk.
 \item{\textbf{ICD/ICDParser:}}\\
-The NLH was given as HTML files. With the help of the NLHParser we wrote, we were able to strip each chapter of HTML tags creating noise in. After stripping the documents of HTML tags, we created XML files of each chapter. After making the XML files, we stripped the files of stop words and stemmed the files using an open source stemming program (Snowball %TODO: Add reference)
-\item{\textbf{Patient case:}}\\
-The patient case was in as a docx-file. We extracted each case into separate text documents. With the help of the CaseReader we implemented, we were able to strip the case of stop words. Afterwards we stemmed the contents with the help of the Snowball stemmer.
-\item{\texfbf{Indexing:}}\\
-The indexer using Apache Lucene %TODO: Add reference 
-takes the ATC codes and index the label and code. The indexer for ICD index the label, code and synonyms. These were stored in a separate folder (resources/index/..) in the project, so it may be accessed by the searcher. 
-\item{\textbf{Search:}}\\
-With the patient cases and NLH reworked to follow a common standard, it was much easier to do the search. The search takes each sentence from each patient case and handbook chapter and searches through the ATC in the ICD codes for relevant hits. This was implemented using Apache Lucene, to make sure we could read the stored index for ATC and ICD. This was done in order to receive ranked hits.
+Legemiddelhåndoken er åpent tilgjengelig på nett, som HTML-filer. 'NLHParseren' leste filene sekvensielt og fjernet HTML-etiketter fra filene, for å fjerne støy. Etter å ha fjernet HTML-etiketter ble hvert dokument gjort om til en XML-fil. XML-filene ble deretter lest sekvensielt for å fjerne stoppord og deretter stemt. For å fjerne stoppord og stemme teksten benyttet vi et åpent tilgjengelig stemmeprogram ved navn 'SnowballStemmer'. 
+%TODO: Add reference)
+\item{\textbf{Pasientjournaler:}}\\
+Pasientjournalene ble gitt som en docx-fil, av fagstabel. Vi delte filen i separate filer for hver pasientjournal. Ved hjelp av javaklassen 'CaseReader', som vi implementerte på egenhånd, fjernet vi stoppord og stemte pasientjournalene.
+\item{\texfbf{Indeksering:}}\\
+Ved hjelp av java-biblioteket Apache Lucene %TODO: Add reference 
+leste vi inn ATC-kodene og indekserte hver etikett og hver kode. Programmet indekserte også hver ICD10-etikett, -kode og synonymer for kodene. Dette ble lagret i separate filer, slik at det ble lettere å aksessere i ettertid.
+\item{\textbf{Søk:}}\\
+Med pasientjournalene og NLH omgjort til en felles standard, var det vesentlig enklere å gjøre søkearbeid. Søkemotoren tar en setning fra hver pasientjournal og kapittel fra NLH og søker gjennom ATC- og ICD10-kodene for å finne relevante treff. Dette ble gjort ved hjelp av Apache Lucene, for å enklere lese indekseringen og senere rangere treffene.
 \item{\textbf{vectorSpace package:}}\\
-In order to implement the vector space model to our project, we wrote the code in the vector space/Document Collection classes. 
+Vi valgte å benytte 'Vector Space Model' for søk og rangering. Implementasjonen av dette er nærmere beskrevet i Teorier %Add link
 \begin{description}
 \item{textit{DocumentVector: }} \\
-The DocumentVector class is used to make vectors out of the indexed documents. The class also implements a DocumentCollection listener, to avoid occurence of duplicates.
+DocumentVector-klassen er brukt for å skape vektorer av de indekserte dokumentene. Klassen benytter en 'DocumentCollection'-lytter for å unngå av det oppstår duplikate vektorer.
 \item{textit{DocumentCollection: }}\\
-This class creates a document collection(vectors), which is built as a HashMap. This class is updated every time a new document is added to the collection (a new vector is added).
+'DocumentCollection'-klassen lager en samling av vektorene produsert av 'DocumentVector'. Dette lagres som et 'HashMap'. Klassen og samlingen oppdateres hver gang et nytt dokument er lagt til i samlingen. 
 \item{textit{VectorSpace: }}\\
-This class does the calculation of the cosine similarity. It calculated the cosine value between two vectors(documents).
+Denne klassen utfører en beregning for å kalkulere cosinus-likheten mellom vektorer. Mer om hvordan dette beregnes er beskrevet i teorier %Add link
 \item{textit{VectorMain: }}\\
-This class consists of a comprehensive main method, which is the very finalization of the algorithm, since it does the ranking of the relevant documents. It uses all of the above mentioned classes.
+Denne klassen består av 'main'-metoden for å kjøre programmet. Denne klassen benytter seg av alle de tidligere beskrevne klassene for å utføre en spørring som en helhet.
 \end{description}
 \end{description}
