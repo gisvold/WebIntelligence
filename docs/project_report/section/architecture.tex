@@ -5,7 +5,7 @@ Etter undersøkelse bestemte vi oss for å bygge systemet vårt ved hjelp av en 
 
 %TODO: Bilde av arkitekturen
 
-En viktig bit av søk i dokumentsamlinger er å kunne indeksere termer i samlingen av dokumenter. For å gjøre dette, tolket vi ATC- og ICD10-kodene og lagret resultatene. Ved å preprosessere NLH og pasientjournalene, var det mulig for søkemotoren å bygge en spørring basert på termer i pasientjournalen. Denne spørringen ble dermed brukt for å søke i ATC- og ICD10-indeksene. Ved å bruke java-biblioteket Apache Lucene, implementerte vi en metode for å rangere resultatene basert på sammenhengen mot ATC-/ICD10-kodene.
+En viktig bit av søk i dokumentsamlinger er å kunne indeksere termer i samlingen av dokumenter. For å gjøre dette, tolket vi ATC- og ICD10-kodene og lagret resultatene. Ved å preprosessere NLH og pasientjournalene, var det mulig for søkemotoren å bygge en spørring basert på termer i pasientjournalen. Denne spørringen ble dermed brukt for å søke i ATC- og ICD10-indeksene. Ved å bruke Java-biblioteket Apache Lucene, implementerte vi en metode for å rangere resultatene basert på sammenhengen mot ATC-/ICD10-kodene.
 
 Merk at javakoden er skrevet på engelsk. Vi valgte engelsk fordi det er en uskrevet standard at man programmerer på engelsk. Det gjorde det også vesentlig enklere å kunne spørre om hjelp via nett.
 
