@@ -13,7 +13,21 @@ Further, if the search only retrieves these 5 documents, the precision will be 1
 \paragraph
 To ensure a better picture of the situation, we also calculated the interpolated precision of four recall levels: 25\%, 50\%, 75\% and 100\%.
 
-%TODO: Add nice tables
+\begin{tabular}{|m{0.3 \textwidth}|m{0.3 \textwidth}|}
+\hline
+Recall & $\overline{P}$(r) \\ \hline
+25\% & 68\% \\ \hline
+50\% & 46\% \\ \hline
+75\% & 28\% \\ \hline
+100\% & 25\% \\ \hline
+\captionof{table}{Precision vs Recall}
+\end{tabular}
+
+\begin{center}
+\importgraphics{recallgraf}
+\captionof{figure}{Precision vs Recall}
+\end{center}
+
 
 
 Since the NLH is quite a huge document, parted into a lot of chapters and sub-chapters, we decided only to consider subchapters that were given their own HTML-file in the original document, as separate entities. This decision effected our search engine, since the sub chapters would not be retrieved as separate hits. This created some noise in our results. 
