@@ -10,7 +10,7 @@ Precision = (relevante og hentede dokumenter) / hentede dokumenter. Eks. Om vi h
 Da ser vi mens recall ser på på antall relevanter dokumenter av totale dokumenter. Recall = (relevante og hentede dokumenter) / (totale dokumenter). Eks. om det finnes 20 dokumenter i kolleksjonen, og 10 av dem er hentet, så vil recall være 50\%. Precision ville vært 100\% i dette tilfelle. 
 
 
-\paragraph
+\newline
 For å skape et bedre bilde av situasjonen, kalkulerte vi den interpolerte presisjonen for fire recall-nivåer: 25\%, 50\%, 75\% and 100\%.
 
 \begin{tabular}{|m{0.3 \textwidth}|m{0.3 \textwidth}|}
@@ -28,6 +28,7 @@ Recall & $\overline{P}$(r) \\ \hline
 \captionof{figure}{Precision vs Recall}
 \end{center}
 
+\newline
 Siden Legemiddelhåndboken er et stort dokument som er videre delt i kapitler, subkapitler og subsubkapitler, bestemte vi oss for å kun håndtere kapitler og subkapitler som separate dokumenter. Bakgrunnen for dette var at kapitler og subkapitler har egne HTML-filer i den originale dokumentsamlingen. Det ville vært en mer optimal løsning å dele videre inn i subsubkapitler, for å få resultater med mindre støy. 
 
 Grunnet støy i resultatene fikk vi tidvis dårlig presisjon, spesielt i pasientsak 7 og 8, hvor det ble retunert for mange dokumenter. 
