@@ -1,14 +1,17 @@
-\section{Discussion}
-\label{sec:discussion}
+\section{Diskusjon}
+\label{sec:diskusjon}
 
-The staff course provided a 'Gold Standard' %TODO: Reference
-which was used to evaluate the performance of the search engine we built. An important aspect of information retrieval is recall vs. precision, so each case was evaluated against these standards.
+Det finnes flere viktige aspekter rundt informasjonsgjenfinning. Blant annet vil det ofte være naturlig å se på precision kontra recall. Som en del av kursmaterale fikk vi også med en såkalt 'gullstandard' som skulle brukes for å måle ytelsen av søkemotoren som vi har laget.
 
-Precision is the percentage of the retrieved documents that are relevant to our case. I.eg. if the retrieves 2 documents, and only 1 is useful to us, the precision is 50\%.
+Precision går på det å se på antall relevante dokumenter av de dokumentene som er valgt. 
 
-Recall is the amount of the relevant documents in the collection that are collected. I.eg. if there are 10 relevant documents in our collection, and 5 of them are retrieved, the recall is 50\%.
+Precision = (relevante og hentede dokumenter) / hentede dokumenter. Eks. Om vi har hentet 2 dokumenter, og bare 1 er relevant. Så vil precision være 50\%.
 
-Further, if the search only retrieves these 5 documents, the precision will be 100\%. 
+Da ser vi mens recall ser på på antall relevanter dokumenter av totale dokumenter. Recall = (relevante og hentede dokumenter) / (totale dokumenter). Eks. om det finnes 20 dokumenter i kolleksjonen, og 10 av dem er hentet, så vil recall være 50\%. Precision ville vært 100\% i dette tilfelle. 
+
+
+
+%TODO: the rest
 
 \paragraph
 To ensure a better picture of the situation, we also calculated the interpolated precision of four recall levels: 25\%, 50\%, 75\% and 100\%.
@@ -19,3 +22,4 @@ To ensure a better picture of the situation, we also calculated the interpolated
 Since the NLH is quite a huge document, parted into a lot of chapters and sub-chapters, we decided only to consider subchapters that were given their own HTML-file in the original document, as separate entities. This decision effected our search engine, since the sub chapters would not be retrieved as separate hits. This created some noise in our results. 
 
 %TODO: Finish this section
+
