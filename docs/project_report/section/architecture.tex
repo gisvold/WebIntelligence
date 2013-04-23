@@ -1,5 +1,5 @@
-\section{Architecture}
-\label{sec:architecture}
+\section{Arkitektur}
+\label{sec:arkitektur}
 
 Etter undersøkelse bestemte vi oss for å bygge systemet vårt ved hjelp av en 'rør og filter'-arkitektur (pipe and filter). Det gjorde det lettere for oss å kunne jobbe på filer individuelt og unngå dobbeltarbeid, da vi kunne lagre resultatene fra en operasjon før vi utførte neste operasjon. Siden pasientjournalene og den norske legemiddelhåndboken kun skulle tolkes en gang, mens søkene skulle utføres gjentatte ganger, med ulike søkeparametere, var dette den mest hensiktsmessige løsningen.
 
@@ -17,7 +17,7 @@ Legemiddelhåndoken er åpent tilgjengelig på nett, som HTML-filer. 'NLHParsere
 %TODO: Add reference)
 \item{\textbf{Pasientjournaler:}}\\
 Pasientjournalene ble gitt som en docx-fil, av fagstabel. Vi delte filen i separate filer for hver pasientjournal. Ved hjelp av javaklassen 'CaseReader', som vi implementerte på egenhånd, fjernet vi stoppord og stemte pasientjournalene.
-\item{\texfbf{Indeksering:}}\\
+\item{\textbf{Indeksering:}}\\
 Ved hjelp av java-biblioteket Apache Lucene %TODO: Add reference 
 leste vi inn ATC-kodene og indekserte hver etikett og hver kode. Programmet indekserte også hver ICD10-etikett, -kode og synonymer for kodene. Dette ble lagret i separate filer, slik at det ble lettere å aksessere i ettertid.
 \item{\textbf{Søk:}}\\
